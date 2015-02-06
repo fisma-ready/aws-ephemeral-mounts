@@ -44,8 +44,8 @@ ephemeral_start() {
         [ ! -e "/dev/$VG_NAME/swap" ] && /sbin/lvcreate -l5120 -nswap "$VG_NAME"
         [ ! -e "/dev/$VG_NAME/tmp" ] && /sbin/lvcreate -l5120 -ntmp "$VG_NAME"
     else
-        [ ! -e "/dev/$VG_NAME/swap" ] && /sbin/lvcreate -l15%VG -nswap "$VG_NAME"
-        [ ! -e "/dev/$VG_NAME/tmp" ] && /sbin/lvcreate -l15%VG -ntmp "$VG_NAME"
+        [ ! -e "/dev/$VG_NAME/swap" ] && /sbin/lvcreate -l20%VG -nswap "$VG_NAME"
+        [ ! -e "/dev/$VG_NAME/tmp" ] && /sbin/lvcreate -l70%VG -ntmp "$VG_NAME"
     fi
 
     [ ! -e "/dev/$VG_NAME/mnt" ] && /sbin/lvcreate -l100%FREE -nmnt "$VG_NAME"
