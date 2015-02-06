@@ -71,11 +71,17 @@ ephemeral_start() {
     /bin/mount -t xfs /dev/$VG_NAME/mnt /mnt
     /bin/chmod 755 /mnt
 
+    # do /var/tmp
+    /bin/mount -o bind,noexec,nodev,nosuid /tmp /var/tmp
+
     log_end_msg 0
 } # ephemeral_start
 
 ephemeral_stop() {
     /sbin/swapoff /dev/$VG_NAME/swap
+  
+    # Take down the /var/tmp bind mount first.
+    /bin/umount /var/tmp
     /bin/umount /tmp
     /bin/umount /mnt
 
